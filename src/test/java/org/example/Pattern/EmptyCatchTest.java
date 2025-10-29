@@ -9,14 +9,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class EmptyCatchTest {
 
     @Test
-    @Disabled
-    @DisplayName("Write you test here. Rename the test method")
-    public void test(){
+   // @Disabled
+    @DisplayName("Empty Catch")
+    public void emptyCatchTest(){
 
        // Define the path to the Java file to be analyzed
         Path path = Paths.get(System.getProperty("user.dir"), "src", "main", "java","org","example","Resource",
@@ -32,5 +34,7 @@ class EmptyCatchTest {
         List<AbstractPattern.elementSchema> res = rule.getDetection();
 
         //TODO - write your test here.
+        assertThat(res).isNotEmpty();
+
     }
 }
