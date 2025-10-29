@@ -3,6 +3,8 @@ package org.example.Pattern;
 // Importing necessary classes from the Spoon library and other utility classes.
 import org.example.Util.ModelUtil;
 import spoon.reflect.CtModel;
+import spoon.reflect.declaration.CtMethod;
+import spoon.reflect.visitor.filter.TypeFilter;
 
 import java.util.List;
 
@@ -31,5 +33,20 @@ public class EmptyMethod extends AbstractPattern {
         // Get all the method blocks (CtMethod) in the CtModel.
         // You need to write your relevant code here. Moreover, for each pattern, you need to create a new file.
         //TODO
+        List<CtMethod> methods = model.getElements(new TypeFilter<>(CtMethod.class));
+        for (CtMethod m : methods ){
+            if (m.getBody().getStatements().isEmpty()){
+                elements.add(new elementSchema(
+                        logMessage,
+                        m.getPosition().getFile().getName(),
+                        m.getPosition().getLine(),
+                        m.getPosition().getEndLine(),
+                        m.toString()
+                ));
+
+            }
+
+        }
     }
 }
+

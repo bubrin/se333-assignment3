@@ -2,6 +2,7 @@ package org.example;
 
 import org.apache.maven.model.Resource;
 import org.example.Pattern.EmptyCatch;
+import org.example.Pattern.EmptyMethod;
 import org.example.Util.ModelUtil;
 
 import java.awt.*;
@@ -30,9 +31,10 @@ public class Main {
 
         // Create a custom static analysis rule (EmptyCatch in this case)
         final EmptyCatch rule1 = new EmptyCatch(model);
-
+        final EmptyMethod rule2 = new EmptyMethod(model);
         // Apply the rule to the parsed Java file
         model.addRuleToAnalyze(rule1);
+        model.addRuleToAnalyze(rule2);
 
         // Apply analysis
         model.runAnalysis();
