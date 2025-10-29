@@ -6,6 +6,7 @@ import spoon.processing.AbstractProcessor;
 import spoon.reflect.declaration.CtElement;
 import spoon.reflect.declaration.CtMethod;
 
+
 import java.util.ArrayList;
 // Abstract class representing a generic pattern detection mechanism.
 public abstract class AbstractPattern {

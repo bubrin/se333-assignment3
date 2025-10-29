@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ModelUtil{
 
     // Initialize the Spoon Launcher instance for parsing Java source code
-    private static final Launcher launcher = new Launcher();
+    private final Launcher launcher = new Launcher();
     final Factory factory = launcher.getFactory();
     private CtModel model; // The parsed Abstract Syntax Tree (AST) of the Java source code
     ArrayList<AbstractPattern> rules = new ArrayList<>(); // List to hold custom analysis rules (processors)

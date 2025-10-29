@@ -1,7 +1,8 @@
 package org.example;
 
 import org.apache.maven.model.Resource;
-import org.example.Pattern.EmptyCatch;
+import org.example.Pattern.*;
+import org.example.Pattern.NullPointerException;
 import org.example.Util.ModelUtil;
 
 import java.awt.*;
@@ -30,9 +31,23 @@ public class Main {
 
         // Create a custom static analysis rule (EmptyCatch in this case)
         final EmptyCatch rule1 = new EmptyCatch(model);
+        final EmptyMethod rule2 = new EmptyMethod(model);
+        final DivByZero rule3 = new DivByZero(model);
+        final AlwaysTrueCond rule4 = new AlwaysTrueCond(model);
+        final FileNotClosed rule5 = new FileNotClosed(model);
+        final IncorrStrComp rule6 = new IncorrStrComp(model);
+        final NullPointerException rule7 = new NullPointerException(model);
+
 
         // Apply the rule to the parsed Java file
         model.addRuleToAnalyze(rule1);
+        model.addRuleToAnalyze(rule2);
+        model.addRuleToAnalyze(rule3);
+        model.addRuleToAnalyze(rule4);
+        model.addRuleToAnalyze(rule5);
+        model.addRuleToAnalyze(rule6);
+        model.addRuleToAnalyze(rule7);
+
 
         // Apply analysis
         model.runAnalysis();

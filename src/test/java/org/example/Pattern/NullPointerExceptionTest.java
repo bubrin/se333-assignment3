@@ -11,11 +11,12 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class EmptyMethodTest {
-
+class NullPointerExceptionTest {
     @Test
-    @DisplayName("Empty Method")
-    void emptyMethodTest() {
+    // @Disabled
+    @DisplayName("NullPointerException")
+    public void nullPointerException(){
+
         // Define the path to the Java file to be analyzed
         Path path = Paths.get(System.getProperty("user.dir"), "src", "main", "java","org","example","Resource",
                 "BuggyFile.java");
@@ -23,7 +24,7 @@ class EmptyMethodTest {
         ModelUtil model = new ModelUtil(path);
 
         // Create a custom static analysis rule (EmptyCatch in this case)
-        final EmptyMethod rule = new EmptyMethod(model);
+        final NullPointerException rule = new NullPointerException(model);
         // Apply the rule to the parsed Java file
         rule.process();
         //
@@ -31,5 +32,6 @@ class EmptyMethodTest {
 
         //TODO - write your test here.
         assertThat(res).isNotEmpty();
+
     }
 }

@@ -7,29 +7,21 @@ import org.junit.jupiter.api.Test;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class EmptyMethodTest {
 
+class DivByZeroTest {
     @Test
-    @DisplayName("Empty Method")
-    void emptyMethodTest() {
-        // Define the path to the Java file to be analyzed
+    @DisplayName("Division by Zero")
+    void divByZeroTest(){
         Path path = Paths.get(System.getProperty("user.dir"), "src", "main", "java","org","example","Resource",
                 "BuggyFile.java");
-        // Initialize the ModelUtil instance with the specified Java file
         ModelUtil model = new ModelUtil(path);
-
-        // Create a custom static analysis rule (EmptyCatch in this case)
-        final EmptyMethod rule = new EmptyMethod(model);
-        // Apply the rule to the parsed Java file
+        final DivByZero rule = new DivByZero(model);
         rule.process();
-        //
         List<AbstractPattern.elementSchema> res = rule.getDetection();
-
-        //TODO - write your test here.
-        assertThat(res).isNotEmpty();
+        assertThat(res).isNotEmpty().allMatch(e -> e.message.equals("Division by Zero"));
     }
 }
