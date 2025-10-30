@@ -24,4 +24,16 @@ class DivByZeroTest {
         List<AbstractPattern.elementSchema> res = rule.getDetection();
         assertThat(res).isNotEmpty().allMatch(e -> e.message.equals("Division by Zero"));
     }
+
+    @Test
+    @DisplayName("Not Division by Zero")
+    void notDivByZeroTest(){
+        Path path = Paths.get(System.getProperty("user.dir"), "src", "main", "java","org","example","Resource",
+                "BuggyFile.java");
+        ModelUtil model = new ModelUtil(path);
+        final DivByZero rule = new DivByZero(model);
+        rule.process();
+        List<AbstractPattern.elementSchema> res = rule.getDetection();
+        assertThat(res).isEmpty();
+    }
 }

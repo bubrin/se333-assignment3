@@ -9,8 +9,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
 class EmptyMethodTest {
 
     @Test
@@ -32,4 +30,19 @@ class EmptyMethodTest {
         //TODO - write your test here.
         assertThat(res).isNotEmpty();
     }
+    @Test
+    @DisplayName("No Empty Method (True Negative)")
+    void noEmptyMethodTest() {
+        // Path to the clean test file
+        Path path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "CleanFile.java");
+        ModelUtil model = new ModelUtil(path);
+
+        final EmptyMethod rule = new EmptyMethod(model);
+        rule.process();
+        List<AbstractPattern.elementSchema> res = rule.getDetection();
+
+        // Expect NO detections for this clean file
+        assertThat(res).isEmpty();
+    }
+
 }

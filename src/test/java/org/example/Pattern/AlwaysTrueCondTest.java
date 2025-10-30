@@ -23,5 +23,16 @@ class AlwaysTrueCondTest {
         List<AbstractPattern.elementSchema> res = rule.getDetection();
         assertThat(res).isNotEmpty().allMatch(a -> a.message.equals("Always True Condition"));
     }
+    @Test
+    @DisplayName("No Always True Condition (True Negative)")
+    public void noAlwaysTrueTest() {
+        Path path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "CleanFile.java");
+        ModelUtil model = new ModelUtil(path);
+        final AlwaysTrueCond rule = new AlwaysTrueCond(model);
+        rule.process();
+        List<AbstractPattern.elementSchema> res = rule.getDetection();
+        assertThat(res).isEmpty(); // should find nothing
+    }
+
 
 }
